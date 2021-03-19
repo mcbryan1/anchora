@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { TextField, Button } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
+import { useDispatch } from 'react-redux'
+import { addUser } from '../../store/actions/userActions'
+
 
 const useStyles = makeStyles({
   formStyle: {
@@ -22,22 +25,40 @@ const useStyles = makeStyles({
 
 const AddUser = () => {
   const classes = useStyles();
+  const dispatch = useDispatch()
+  const [user, setUser] = useState({
+    name: '',
+    image: ''
+  })
+
+  const handleSubmit = e =>{
+    e.preventDefault()
+    dispatch(addUser(user))
+    setUser({
+      name: '',
+      image: ''
+    })
+  }
   return (
     <>
-      <form className={classes.formStyle} noValidate autoComplete="off">
+      <form className={classes.formStyle} noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField
           id="enter-name"
           label="Enter Name"
           autoFocus
           variant="outlined"
           fullWidth
+          value={user.name}
+          onChange ={(e) => setUser({...user, name: e.target.value, date: new Date()})}
         />
         <TextField
           id="enter-image"
           type="file"
           variant="outlined"
           fullWidth
+          value={user.image}
           className={classes.fileForm}
+          onChange ={(e) => setUser({...user, image: e.target.value, date: new Date()})}
         />
         <Button
           color="secondary"

@@ -21,7 +21,6 @@ const ListUsers = () => {
                 All Users
             </Typography>
             <User/>
-            <User/>
         </div>
     )
 }
