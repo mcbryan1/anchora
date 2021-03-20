@@ -20,31 +20,25 @@ const useStyles = makeStyles({
     width: "100px",
   },
 });
-const User = () => {
+const User = ({data}) => {
   const classes = useStyles();
   return (
     <>
       <div className={classes.userStyle}>
         <div>
-          <img
-            src="https://dummyimage.com/100/d11e56/fff"
-            alt="img"
-            className={classes.image}
-          />
+          <Typography variant="h5">{data.name}</Typography>
           <Typography variant="body2" className={classes.grayStyle}>
             4 days ago
           </Typography>
         </div>
-        <div>
-          <Typography variant="h5">Kwesi Appiah</Typography>
-        </div>
+
         <div>
           <ButtonGroup>
-            <Button >
-              <Create color="primary"/>
+            <Button>
+              <Create color="primary" />
             </Button>
             <Button>
-              <Delete color="secondary"/>
+              <Delete color="secondary" />
             </Button>
           </ButtonGroup>
         </div>

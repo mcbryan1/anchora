@@ -26,17 +26,15 @@ const useStyles = makeStyles({
 const AddUser = () => {
   const classes = useStyles();
   const dispatch = useDispatch()
-  const [user, setUser] = useState({
+  const [data, setData] = useState({
     name: '',
-    image: ''
   })
 
   const handleSubmit = e =>{
     e.preventDefault()
-    dispatch(addUser(user))
-    setUser({
+    dispatch(addUser(data))
+    setData({
       name: '',
-      image: ''
     })
   }
   return (
@@ -48,18 +46,18 @@ const AddUser = () => {
           autoFocus
           variant="outlined"
           fullWidth
-          value={user.name}
-          onChange ={(e) => setUser({...user, name: e.target.value, date: new Date()})}
+          value={data.name}
+          onChange ={(e) => setData({...data, name: e.target.value, date: new Date()})}
         />
-        <TextField
+        {/* <TextField
           id="enter-image"
           type="file"
           variant="outlined"
           fullWidth
-          value={user.image}
+          value={user.file}
           className={classes.fileForm}
-          onChange ={(e) => setUser({...user, image: e.target.value, date: new Date()})}
-        />
+          onChange ={(e) => setUser({...user, file: e.target.value, date: new Date()})}
+        /> */}
         <Button
           color="secondary"
           variant="contained"

@@ -1,13 +1,15 @@
 import axios from 'axios'
 import {url} from '../../api'
 
-export const addUser = (user) =>{
-    return(dispatch, getState) =>{
-        axios.post(`${url}/items`, user)
-        .then(user =>{
+
+// Get All Users
+export const getUsers = () =>{
+    return(dispatch) =>{
+        axios.post(`${url}/categories`)
+        .then(data =>{
             dispatch({
-                type: "ADD_USER",
-                user
+                type: "GET_USERS",
+                data
             })
         })
         .catch (error =>{
@@ -15,3 +17,20 @@ export const addUser = (user) =>{
         })
     }
 }
+
+// Add A User
+export const addUser = (data) =>{
+    return(dispatch, getState) =>{
+        axios.post(`${url}/categories`, data)
+        .then(data =>{
+            dispatch({
+                type: "ADD_USER",
+                data
+            })
+        })
+        .catch (error =>{
+            console.log(error.response)
+        })
+    }
+}
+
